@@ -1,0 +1,1 @@
+start=com.hongpro.demo.common.spi.dubbospi.StartCommand
