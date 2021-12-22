@@ -1,8 +1,7 @@
-package com.hongpro.demo.common.validate.domain;
+package com.hongpro.demo.common.validate.model.result;
 
 /**
  * @author zhangzihong
- * @version 1.0.0.0
  * @description 校验结果类
  * @date 2021/11/29 17:08
  */

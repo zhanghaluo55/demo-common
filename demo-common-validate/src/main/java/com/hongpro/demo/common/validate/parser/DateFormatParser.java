@@ -1,9 +1,8 @@
 package com.hongpro.demo.common.validate.parser;
 
 import com.hongpro.demo.common.validate.annotation.DateFormat;
-import com.hongpro.demo.common.validate.constants.Level;
-import com.hongpro.demo.common.validate.domain.ValidateResult;
-import com.hongpro.demo.common.validate.valid.AnnotationValidator;
+import com.hongpro.demo.common.validate.model.constant.Level;
+import com.hongpro.demo.common.validate.model.result.ValidateResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,7 +1,5 @@
 package com.hongpro.demo.common.juc.future;
 
-import com.sun.deploy.util.StringUtils;
-
 import java.util.concurrent.*;
 
 /**

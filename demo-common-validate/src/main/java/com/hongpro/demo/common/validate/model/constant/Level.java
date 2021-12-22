@@ -1,4 +1,4 @@
-package com.hongpro.demo.common.validate.constants;
+package com.hongpro.demo.common.validate.model.constant;
 
 /**
  * @author zhangzihong

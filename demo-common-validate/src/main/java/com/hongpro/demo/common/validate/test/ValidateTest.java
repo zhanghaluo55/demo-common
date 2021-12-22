@@ -1,7 +1,7 @@
 package com.hongpro.demo.common.validate.test;
 
 import com.hongpro.demo.common.validate.domain.User;
-import com.hongpro.demo.common.validate.domain.ValidateResult;
+import com.hongpro.demo.common.validate.model.result.ValidateResult;
 import com.hongpro.demo.common.validate.valid.AnnotationRule;
 import com.hongpro.demo.common.validate.valid.AnnotationValidator;
 import com.hongpro.demo.common.validate.valid.Validator;

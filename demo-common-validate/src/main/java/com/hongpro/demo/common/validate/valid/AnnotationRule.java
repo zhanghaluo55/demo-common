@@ -1,6 +1,6 @@
 package com.hongpro.demo.common.validate.valid;
 
-import com.hongpro.demo.common.validate.domain.ValidateResult;
+import com.hongpro.demo.common.validate.model.result.ValidateResult;
 
 /**
  * @author zhangzihong

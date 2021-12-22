@@ -1,8 +1,8 @@
 package com.hongpro.demo.common.validate.valid;
 
 
-import com.hongpro.demo.common.validate.constants.Level;
-import com.hongpro.demo.common.validate.domain.ValidateResult;
+import com.hongpro.demo.common.validate.model.constant.Level;
+import com.hongpro.demo.common.validate.model.result.ValidateResult;
 import com.hongpro.demo.common.validate.parser.IAnnotationParser;
 import com.hongpro.demo.common.validate.parser.NotBlankParser;
 import com.hongpro.demo.common.validate.parser.NotNullParser;
