@@ -11,7 +11,12 @@ import com.hongpro.demo.common.validate.model.result.ResultStatus;
 public class DataNotExistsException extends BaseException {
     private static final long serialVersionUID = -2016959026653079415L;
 
-    private final ResultStatus resultStatus;
+    private ResultStatus resultStatus;
+
+
+    public DataNotExistsException() {
+        super(GlobalReturnStatus.NOT_FOUND_DATA);
+    }
 
     public DataNotExistsException(ResultStatus resultStatus) {
         super(resultStatus);

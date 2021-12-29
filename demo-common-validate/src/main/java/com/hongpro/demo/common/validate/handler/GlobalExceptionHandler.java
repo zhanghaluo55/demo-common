@@ -10,12 +10,16 @@ import com.hongpro.demo.common.validate.model.result.ResultStatus;
 import com.hongpro.demo.common.validate.model.result.ReturnError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolationException;
+import javax.validation.ValidationException;
 
 /**
  * @author zhangzihong
@@ -27,6 +31,12 @@ public class GlobalExceptionHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
     private static final String RESPONSE_ERROR_RESULT = "RESPONSE_RESULT";
     private static final String ERROR_HEADER = "ERROR";
+
+    @ExceptionHandler(value = ValidationException.class)
+    public Object exceptionHandler(HttpServletResponse response, ValidationException be) {
+        LOGGER.error("校验异常：", be);
+        return new ReturnError(new ResultStatus(GlobalReturnStatus.ERROR.getCode(), be.getCause().getMessage()));
+    }
 
     /**
      * 默认异常
@@ -110,6 +120,22 @@ public class GlobalExceptionHandler {
             LOGGER.warn("参数校验异常:{}({})", fieldError.getDefaultMessage(),fieldError.getField());
             return new ReturnError(new ResultStatus(GlobalReturnStatus.PARAM_ERROR.getCode(), fieldError.getDefaultMessage()));
         }
+        return new ReturnError(new ResultStatus(GlobalReturnStatus.PARAM_ERROR.getCode(), e.getMessage()));
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ReturnError handleConstraintViolationException(ConstraintViolationException e) {
+        LOGGER.error( "ValidationException:" + e.getMessage(), e );
+        return new ReturnError(new ResultStatus(GlobalReturnStatus.PARAM_ERROR.getCode(), e.getMessage()));
+    }
+
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public ReturnError handlerNoFoundException(Exception e) {
+        return new ReturnError(new ResultStatus(GlobalReturnStatus.PARAM_ERROR.getCode(), e.getMessage()));
+    }
+
+    @ExceptionHandler(DuplicateKeyException.class)
+    public ReturnError handleDuplicateKeyException(DuplicateKeyException e) {
         return new ReturnError(new ResultStatus(GlobalReturnStatus.PARAM_ERROR.getCode(), e.getMessage()));
     }
 

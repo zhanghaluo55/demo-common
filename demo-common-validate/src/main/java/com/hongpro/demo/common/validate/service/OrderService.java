@@ -11,6 +11,8 @@ import com.hongpro.demo.common.validate.model.vo.OrderCreateVo;
 public interface OrderService {
     /**
      * 实例方法
+     * @param orderCreateDto 订单对象
+     * @return 返回订单实体
      */
     OrderCreateVo createOrder(OrderCreateDto orderCreateDto);
 }

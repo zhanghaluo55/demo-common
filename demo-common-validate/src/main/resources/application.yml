@@ -1,0 +1,63 @@
+server:
+  port: 8126
+
+#默认使用配置
+spring.datasource:
+  type: com.alibaba.druid.pool.DruidDataSource
+  druid:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.56.103:3306/dev_ops?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+    username: dev_ops
+    password: Dev@#$2020
+    initial-size: 10  # 初始化大小，最小，最大
+    min-idle: 10
+    max-active: 200
+    max-wait: 60000  # 配置获取连接等待超时的时间
+    time-between-eviction-runs-millis: 60000  # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    min-evictable-idle-time-millis: 300000  # 配置一个连接在池中最小生存的时间，单位是毫秒
+    test-while-idle: true
+    test-on-borrow: false
+    test-on-return: false
+    pool-prepared-statements: false  # 关闭PSCache，并且指定每个连接上PSCache的大小
+    filter:   #是否启用StatFilter默认值true
+      stat:
+        log-slow-sql: true
+        slow-sql-millis: 1000
+        merge-sql: true
+        db-type: mysql
+        enabled: true
+
+    web-stat-filter:
+      enabled: true
+      url-pattern:  "/*"
+      exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*,*.woff,/swagger-resources/*,/swagger-ui.html"
+      session-stat-enable: true #session统计功能
+      session-stat-max-count: 100000 #最大session数
+
+    stat-view-servlet:  #配置StatViewServlet
+      enabled: true
+      login-username: admin
+      login-password: druid$2018
+      url-pattern: "/druid/*"
+      reset-enable: true
+#公共配置与profiles选择无关
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    # 逻辑删除配置
+    db-config:
+      # 删除前
+      logic-not-delete-value: 1
+      # 删除后
+      logic-delete-value: 0
+      # 更新策略，空字符串和null时不更新
+      update-strategy: not_empty
+
+logging:
+  level:
+    org.springframework.web.servlet.DispatcherServlet: false
+    com.migu.tsg.msp.microservice.atomicservice.ci.server.dao: DEBUG
+    com.aspirecn.statistics: DEBUG
