@@ -1,5 +1,8 @@
 package com.hongpro.demo.common.validate.controller;
 
+import javax.validation.Valid;
+
+import com.hongpro.demo.common.validate.annotation.OperateLog;
 import com.hongpro.demo.common.validate.base.BaseController;
 import com.hongpro.demo.common.validate.base.BaseService;
 import com.hongpro.demo.common.validate.domain.Order;
@@ -9,14 +12,13 @@ import com.hongpro.demo.common.validate.model.result.BaseResult;
 import com.hongpro.demo.common.validate.model.vo.OrderCreateVo;
 import com.hongpro.demo.common.validate.service.impl.OrderServiceImpl;
 import com.hongpro.demo.common.validate.utils.ValidatorUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.Valid;
 
 /**
  * @author zhangzihong
@@ -39,6 +41,7 @@ public class OrderController extends BaseController<Order> {
     }
 
     @PostMapping("/order2")
+    @OperateLog(type = "ADD", name = "ORDER", value = "新增订单")
     public BaseResult<OrderCreateVo> validationTest2(@RequestBody @Valid OrderCreateDto orderCreateDto) {
         if (EXIST_PARAM.equals(orderCreateDto.getOrderId())) {
             throw new BusinessException("订单号已存在!");

@@ -4,6 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.hongpro</groupId>
     <artifactId>demo-common</artifactId>
+    <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <name>demo-common</name>
     <description>Demo project for Spring Boot</description>
@@ -12,6 +13,11 @@
         <module>demo-common-mybatis</module>
         <module>demo-common-spi</module>
         <module>demo-common-validate</module>
+        <module>demon-common-poi</module>
+      <module>demo-common-spring</module>
+      <module>demo-common-elasticsearch</module>
+      <module>demo-common-jdk8newfeatures</module>
+        <module>demo-common-juc</module>
     </modules>
 
     <properties>
